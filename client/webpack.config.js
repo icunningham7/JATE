@@ -13,9 +13,10 @@ module.exports = () => {
       main: './src/js/index.js',
       install: './src/js/install.js'
     },
-    output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+    devtool: 'inline-source-map',
+    devServer: {
+      port: process.env.PORT || 3000,
+      static: path.resolve(__dirname, 'dist')
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -23,7 +24,6 @@ module.exports = () => {
         title: 'JATE+'
       })
     ],
-
     module: {
       rules: [
         {
@@ -34,7 +34,24 @@ module.exports = () => {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
           type: 'asset/resource',
         },
+        {
+          test: /\.m?js$/i,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+          }
+        }
       ],
+    },
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+      clean: true,
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
     },
   };
 };
