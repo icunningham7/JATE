@@ -16,12 +16,25 @@ module.exports = () => {
     devtool: 'inline-source-map',
     devServer: {
       port: process.env.PORT || 3000,
-      static: path.resolve(__dirname, 'dist')
+      static: path.resolve(__dirname, 'dist'),
+      hot: 'only',
     },
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'JATE+'
+        title: 'JATE'
+      }),
+      new WebpackPwaManifest({
+        name: 'Just Another Text Editor',
+        short_name: 'JATE',
+        description: 'A simple text editor with local storage and pwa functionality',
+        background_color: '#272822',
+        icons: [
+          {
+            src: path.resolve(__dirname, './src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512]
+          }
+        ]
       })
     ],
     module: {
@@ -39,6 +52,9 @@ module.exports = () => {
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            },
           }
         }
       ],
