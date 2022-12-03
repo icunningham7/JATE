@@ -26,7 +26,7 @@ export const getDb = async () => {
   const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  const request = store.getAll(); // TODO: Is this the best strategy for this?
+  const request = store.get(0); // TODO: Is this the best strategy for this?
   const result = await request;
   return result;
 };
