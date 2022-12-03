@@ -13,7 +13,7 @@ module.exports = () => {
     },
     devtool: 'inline-source-map',
     devServer: {
-      port: process.env.PORT || 3000,
+      port: process.env.PORT || 3001,
       static: path.resolve(__dirname, 'dist'),
       // hot: 'only',
     },
