@@ -25,6 +25,7 @@ module.exports = () => {
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
+        exclude: [/\.(?:png|jpg|jpeg|svg)$/],
       }),
       new WebpackPwaManifest({
         name: 'Just Another Text Editor',

@@ -17,7 +17,7 @@ export const putDb = async (content) => {
   const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  const request = store.put({ id: 0, content: content }); // TODO: Is this the best strategy for this?
+  const request = store.put({ id: 0, content: content });
   const result = await request;
   console.log('Data saved toe the database');
 };
@@ -27,7 +27,7 @@ export const getDb = async () => {
   const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  const request = await store.get(0); // TODO: Is this the best strategy for this?
+  const request = await store.get(0);
   const result = await request;
   return result;
 };
