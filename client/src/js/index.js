@@ -2,7 +2,6 @@ import { Workbox } from 'workbox-window';
 import Editor from './editor';
 import './database';
 import '../css/style.css';
-import srcsw from '../../src-sw';
 
 const main = document.querySelector('#main');
 main.innerHTML = '';
@@ -27,15 +26,8 @@ if (typeof editor === 'undefined') {
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
   // register workbox service worker
-  const workboxSW = new Workbox(srcsw);
-  workboxSW.register().then(console.log('REGISTERED')).then((register) => console.log('SERVICE WORKER REGISTERED',register));
+  const workboxSW = new Workbox('/src-sw.js');
+  workboxSW.register().then((register) => console.log('SERVICE WORKER REGISTERED',register));
 } else {
   console.error('Service workers are not supported in this browser.');
 }
-
-
-if (module.hot) {
-  module.hot.accept((err) => {
-    if (err) console.error('Cannot apply HMR update.', err);
-  });
-};

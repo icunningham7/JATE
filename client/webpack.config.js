@@ -24,7 +24,7 @@ module.exports = () => {
       }),
       new InjectManifest({
         swSrc: './src-sw.js',
-        swDest: 'sw.js',
+        swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
         name: 'Just Another Text Editor',
@@ -32,8 +32,8 @@ module.exports = () => {
         description: 'A simple text editor with local storage and pwa functionality',
         background_color: '#272822',
         fingerprints: false,
-        start_url: '',
-        publicPath: '',
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
             src: path.resolve(__dirname, './src/images/logo.png'),
